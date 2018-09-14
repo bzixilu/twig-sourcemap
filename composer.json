@@ -1,0 +1,20 @@
+{
+  "name": "bzixilu/twig-sourcemap",
+  "description": "Utility to generate Twig source maps",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Olga Strizhenko",
+      "email": "delboy1978uk@gmail.com"
+    }
+  ],
+  "require": {
+    "twig/twig": "*",
+    "koala-framework/sourcemaps": "~0.5"
+  },
+  "autoload":{
+    "psr-4":{
+      "bzixilu\\sourceMap\\": "src"
+    }
+  }
+}

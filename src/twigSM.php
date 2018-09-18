@@ -24,7 +24,8 @@ $getopt->process();
 $output = $getopt->getOption('output');
 $template = $getopt->getOption('template');
 
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/../templates');
+$loader = file_exists($a = __DIR__ . '/../../../../templates') ? new Twig_Loader_Filesystem(__DIR__ . '/../../../../templates')
+    : new Twig_Loader_Filesystem(__DIR__ . '/../templates');
 
 // Instantiate our Twig
 $twig = new Twig_Environment($loader);

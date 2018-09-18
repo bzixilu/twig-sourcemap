@@ -27,6 +27,7 @@ function compileTemplateSource(Twig_Environment $twig, $name, $output)
 {
     $source = $twig->getLoader()->getSourceContext($name);
     $content = $twig->compileSource($source);
+    echo $output . '/' . $name . '.php';
     file_put_contents($output . '/' . $name . '.php', $content . PHP_EOL);
     file_put_contents($output . '/' . $name . '.php', '//# sourceMappingURL=' . $name . '.map', FILE_APPEND);
 }
@@ -50,5 +51,6 @@ function generateSourceMap(Twig_Environment $twig, $name, $outputPath)
     foreach ($debug as $outputLine => $sourceLine) {
         $map->addMapping($outputLine, 0, $sourceLine, 0, $path);
     }
+    echo "\n" . $outputPath . '/' . $name . '.map';
     file_put_contents($outputPath . '/' . $name . '.map', $map->getMapContents());
 }

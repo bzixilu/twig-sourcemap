@@ -12,7 +12,8 @@
   "require": {
     "php": ">=5.3.0",
     "twig/twig": "*",
-    "koala-framework/sourcemaps": "~0.5"
+    "koala-framework/sourcemaps": "~0.5",
+    "ulrichsg/getopt-php": "3.2.1"
   },
   "autoload":{
     "psr-4":{

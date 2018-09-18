@@ -18,27 +18,29 @@ function isTwigTemplateName($name)
 
 /**
  * @param Twig_Environment $twig
- * @param $name
- * @throws Twig_Error_Syntax
+ * @param $name - template name
+ * @param $output - output dir
  * @throws Twig_Error_Loader
+ * @throws Twig_Error_Syntax
  */
-function compileTemplateSource(Twig_Environment $twig, $name)
+function compileTemplateSource(Twig_Environment $twig, $name, $output)
 {
     $source = $twig->getLoader()->getSourceContext($name);
     $content = $twig->compileSource($source);
-    file_put_contents(__DIR__ . '/../output/' . $name . '.php', $content . PHP_EOL);
-    file_put_contents(__DIR__ . '/../output/' . $name . '.php', '//# sourceMappingURL=' . $name . '.map', FILE_APPEND);
+    file_put_contents($output . '/' . $name . '.php', $content . PHP_EOL);
+    file_put_contents($output . '/' . $name . '.php', '//# sourceMappingURL=' . $name . '.map', FILE_APPEND);
 }
 
 /**
  * @param Twig_Environment $twig
- * @param $name
+ * @param $name - name of template
+ * @param $outputPath - path to output dir
  * @return void
  * @throws ReflectionException
  * @throws Twig_Error_Loader
  * @throws Twig_Error_Syntax
  */
-function generateSourceMap(Twig_Environment $twig, $name)
+function generateSourceMap(Twig_Environment $twig, $name, $outputPath)
 {
     $template = $twig->createTemplate($name);
     $path = $template->getSourceContext()->getPath();
@@ -48,5 +50,5 @@ function generateSourceMap(Twig_Environment $twig, $name)
     foreach ($debug as $outputLine => $sourceLine) {
         $map->addMapping($outputLine, 0, $sourceLine, 0, $path);
     }
-    file_put_contents(__DIR__ . '/../output/' . $name . '.map', $map->getMapContents());
+    file_put_contents($outputPath . '/' . $name . '.map', $map->getMapContents());
 }

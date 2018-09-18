@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4a46edced6f521388be4467ac4763a0",
+    "content-hash": "9fa0c52a617c4e36e776188f3face82c",
     "packages": [
         {
             "name": "koala-framework/sourcemaps",
@@ -233,6 +233,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.3.0"
+    },
     "platform-dev": []
 }

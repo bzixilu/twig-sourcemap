@@ -8,6 +8,7 @@
       "email": "bzixilu@gmail.com"
     }
   ],
+  "minimum-stability": "dev",
   "require": {
     "twig/twig": "*",
     "koala-framework/sourcemaps": "~0.5"

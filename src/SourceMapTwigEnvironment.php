@@ -26,6 +26,14 @@ class SourceMapTwigEnvironment extends \Twig_Environment
         return $template;
     }
 
+    public function compileSource(Twig_Source $source)
+    {
+        $compileSource = parent::compileSource($source);
+        $compileSource = $compileSource . '//# sourceMappingURL=' . $this->getMapFileName($source->getName());
+        return $compileSource;
+    }
+
+
     /**
      * @param $name
      * @param $template
@@ -42,7 +50,7 @@ class SourceMapTwigEnvironment extends \Twig_Environment
             $map->addMapping($outputLine, 0, $sourceLine, 0, $path);
         }
         echo "\n" . $outputPath . '/' . $name . '.map';
-        file_put_contents($outputPath . '/' . $name . '.map', $map->getMapContents());
+        file_put_contents($outputPath . '/' . $this->getMapFileName($name), $map->getMapContents());
     }
 
     /**
@@ -51,5 +59,10 @@ class SourceMapTwigEnvironment extends \Twig_Environment
     public function setOutputPath($outputPath)
     {
         $this->outputPath = $outputPath;
+    }
+
+    public function getMapFileName($name)
+    {
+        return $name . '.map';
     }
 }

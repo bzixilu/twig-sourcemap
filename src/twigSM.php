@@ -32,6 +32,7 @@ $twig = new Twig_Environment($loader);
 // provide some options to debug
 $twig->enableDebug();
 $twig->enableAutoReload();
+$twig->setCache(__DIR__ . '/../cache');
 
 if (isTwigTemplateName($template)) {
     try {

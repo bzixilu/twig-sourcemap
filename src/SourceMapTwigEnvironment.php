@@ -23,6 +23,7 @@ class SourceMapTwigEnvironment extends \Twig_Environment
             $this->generateSourceMap($name, $template, $this->outputPath);
         } catch (ReflectionException $e) {
         }
+        return $template;
     }
 
     /**

@@ -1,5 +1,10 @@
 <?php
 
+if (file_exists($a = __DIR__ . '/../../../autoload.php')) {
+    require_once $a;
+} else {
+    require_once __DIR__ . '/../vendor/autoload.php';
+}
 
 /**
  * Extends Twig_Environment with the possibility to generate source maps in order to debug templates

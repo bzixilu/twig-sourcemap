@@ -4,6 +4,9 @@
 use GetOpt\GetOpt;
 
 require __DIR__ . '/twig_source_map_utils.php';
+require __DIR__ . '/SourceMapTwigEnvironment.php';
+
+
 if (file_exists($a = __DIR__ . '/../../../autoload.php')) {
     require_once $a;
 } else {
@@ -28,18 +31,12 @@ $loader = file_exists($a = __DIR__ . '/../../../../templates') ? new Twig_Loader
     : new Twig_Loader_Filesystem(__DIR__ . '/../templates');
 
 // Instantiate our Twig
-$twig = new Twig_Environment($loader);
-// provide some options to debug
-$twig->enableDebug();
-$twig->enableAutoReload();
-$twig->setCache(__DIR__ . '/../cache');
-
+$twig = new \SourceMapTwigEnvironment($loader);
+$twig->setOutputPath($output);
 if (isTwigTemplateName($template)) {
     try {
-        compileTemplateSource($twig, $template, $output);
-        generateSourceMap($twig, $template, $output);
+        $twig->loadTemplate($template);
     } catch (Twig_Error_Syntax $e) {
-    } catch (ReflectionException $e) {
     } catch (Twig_Error_Loader $e) {
     }
 }
